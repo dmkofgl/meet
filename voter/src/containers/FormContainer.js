@@ -10,7 +10,8 @@ import moment from 'moment'
 export class FormContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeName = this.handleChangeName.bind(this);
+    this.handleChangePhone = this.handleChangePhone.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.changeMode = this.changeMode.bind(this);
     this.onClickAddDate = this.onClickAddDate.bind(this);
@@ -33,9 +34,10 @@ export class FormContainer extends React.Component {
   }
 
 
-  handleChange(event) { this.setState({ name: event.target.value }); }
+  handleChangeName(event) { this.setState({ name: event.target.value }); }
+  handleChangePhone(event) { this.setState({ phone: event.target.value }); }
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.name);
+    alert('A name was submitted: ' + this.state.name + this.state.phone);
     event.preventDefault();
   }
   changeMode(mode) {
@@ -122,17 +124,18 @@ export class FormContainer extends React.Component {
     };
     return (
       <form onSubmit={this.handleSubmit} >
-        <NameForm handleChange={this.handleChange} />
+        <div>
+          <NameForm handleChange={this.handleChangeName} text={"Name"} />
+          <NameForm handleChange={this.handleChangePhone} text={"Phone"} />
+          <input type="submit" value="Submit" />
+        </div>
+
 
         <InputDateContainer onClickAddDate={this.onClickAddDate}
           removeDates={this.removeDates}
           startDate={this.state.datetimePickDates.startDate}
           endDate={this.state.datetimePickDates.endDate}
           number={this.state.currentNumber} />
-        {/* <ModeButton value={"day"} text={"Days"} onClick={this.changeMode} />
-        <ModeButton value={"week"} text={"weeks"} onClick={this.changeMode} />
-        <ModeButton value={"month"} text={"month"} onClick={this.changeMode} /> */}
-        {/* <TimeLine data={this.state.data} links={links} mode={this.state.mode} /> */}
         <Timeline groups={groups}
           items={this.state.date}
           defaultTimeStart={moment().add(-12, 'hour')}
