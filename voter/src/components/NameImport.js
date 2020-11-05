@@ -1,6 +1,7 @@
 import React from 'react';
 
 export class NameForm extends React.Component {
+  
     render() {
         return (
             <div>

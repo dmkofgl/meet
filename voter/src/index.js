@@ -4,16 +4,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
-import {Header} from './Header';
-import { Main } from './Main';
+import store from './store'
+import {Provider } from "react-redux";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Header />
-      <Main />
-    </BrowserRouter>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
 
