@@ -13,7 +13,7 @@ const Profile = () => {
     <div className="container">
       <header className="jumbotron">
         <h3>
-          <strong>{currentUser.username}</strong> Profile
+          <strong>{currentUser.client.login}</strong> Profile
         </h3>
       </header>
       <p>
@@ -21,15 +21,19 @@ const Profile = () => {
         {currentUser.accessToken.substr(currentUser.accessToken.length - 20)} */}
       </p>
       <p>
-        <strong>Id:</strong> {currentUser.id}
+        <strong>Id:</strong> {currentUser.client.id}
       </p>
       <p>
-        <strong>Email:</strong> {currentUser.email}
+        <strong>Phone:</strong> {currentUser.client.phone}
       </p>
       <strong>Authorities:</strong>
       <ul>
         {currentUser.roles &&
           currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
+      </ul>
+      <strong>Token:</strong>
+      <ul>
+        {currentUser.accessToken}
       </ul>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Router, Switch, Route, Link } from "react-router-dom";
-
+import "./App.css";
 import { Header } from './Header';
 import { Main } from './Main';
 
@@ -11,7 +11,6 @@ import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
 
 const App = () => {
-
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -26,9 +25,10 @@ const App = () => {
 
   return (
     <Router history={history}>
-      <Header />
+      <Header currentUser={currentUser.client} logOut={logOut} />
       <Main />
     </Router>
   );
-}
+};
+
 export default App;

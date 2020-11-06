@@ -28,7 +28,7 @@ export const Header = (props) => (
       <div className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link to={"/profile"} className="nav-link">
-            {props.currentUser.username}
+            {props.currentUser.login}
           </Link>
         </li>
         <li className="nav-item">

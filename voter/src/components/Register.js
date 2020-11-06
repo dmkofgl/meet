@@ -22,7 +22,7 @@ const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
       <div className="alert alert-danger" role="alert">
-        This is not a valid email.
+        This is not a valid phone.
       </div>
     );
   }
@@ -53,7 +53,7 @@ const Register = () => {
   const checkBtn = useRef();
 
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
 
@@ -65,9 +65,9 @@ const Register = () => {
     setUsername(username);
   };
 
-  const onChangeEmail = (e) => {
-    const email = e.target.value;
-    setEmail(email);
+  const onChangePhone = (e) => {
+    const phone = e.target.value;
+    setPhone(phone);
   };
 
   const onChangePassword = (e) => {
@@ -83,7 +83,7 @@ const Register = () => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      dispatch(register(username, email, password))
+      dispatch(register(username, phone, password))
         .then(() => {
           setSuccessful(true);
         })
@@ -118,18 +118,18 @@ const Register = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="phone">Phone</label>
                 <Input
                   type="text"
                   className="form-control"
-                  name="email"
-                  value={email}
-                  onChange={onChangeEmail}
-                  validations={[required, validEmail]}
+                  name="phone"
+                  value={phone}
+                  onChange={onChangePhone}
+                  validations={[required]}
                 />
               </div>
 
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="password">Password</label>
                 <Input
                   type="password"
@@ -139,7 +139,7 @@ const Register = () => {
                   onChange={onChangePassword}
                   validations={[required, vpassword]}
                 />
-              </div>
+              </div> */}
 
               <div className="form-group">
                 <button className="btn btn-primary btn-block">Sign Up</button>
