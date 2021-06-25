@@ -7,6 +7,8 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
 import { login } from "../actions/auth";
+import { LoginGithubButton } from "./LoginGithubButton";
+import { Link } from 'react-router-dom';
 
 const required = (value) => {
   if (!value) {
@@ -50,9 +52,12 @@ const Login = (props) => {
 
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(username, password))
-        .then(() => {
-          props.history.push("/profile");
-          window.location.reload();
+        .then((r) => {
+          console.debug(r);
+          if (localStorage.getItem("user")) {
+            props.history.push("/profile");
+            window.location.reload();
+          }
         })
         .catch(() => {
           setLoading(false);
@@ -61,6 +66,7 @@ const Login = (props) => {
       setLoading(false);
     }
   };
+
 
   if (isLoggedIn) {
     return <Redirect to="/profile" />;
@@ -118,6 +124,9 @@ const Login = (props) => {
           )}
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
+
+        <a href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:3000/login" rel="noreferrer">google</a>
+        <a href="http://localhost:8080/oauth2/authorization/github?redirect_uri=http://localhost:3000/login" rel="noreferrer">github</a>
       </div>
     </div>
   );

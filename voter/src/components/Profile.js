@@ -6,6 +6,7 @@ const Profile = () => {
   const { user: currentUser } = useSelector((state) => state.auth);
 
   if (!currentUser) {
+
     return <Redirect to="/login" />;
   }
 
@@ -13,7 +14,7 @@ const Profile = () => {
     <div className="container">
       <header className="jumbotron">
         <h3>
-          <strong>{currentUser.client.login}</strong> Profile
+          <strong>{currentUser.name}</strong> Profile
         </h3>
       </header>
       <p>
@@ -21,10 +22,10 @@ const Profile = () => {
         {currentUser.accessToken.substr(currentUser.accessToken.length - 20)} */}
       </p>
       <p>
-        <strong>Id:</strong> {currentUser.client.id}
+        <strong>Id:</strong> {currentUser.id}
       </p>
       <p>
-        <strong>Phone:</strong> {currentUser.client.phone}
+        <strong>Email:</strong> {currentUser.email}
       </p>
       <strong>Authorities:</strong>
       <ul>
@@ -34,6 +35,9 @@ const Profile = () => {
       <strong>Token:</strong>
       <ul>
         {currentUser.accessToken}
+      </ul>
+      <ul>
+        Image: <img src={currentUser.imageUrl} />
       </ul>
     </div>
   );

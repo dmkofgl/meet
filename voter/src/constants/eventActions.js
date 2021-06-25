@@ -1,0 +1,4 @@
+
+export const ACTION_CREATE = "ACTION_CREATE";
+export const ACTION_UPDATE = "ACTION_UPDATE";
+export const ACTION_DELETE = "ACTION_DELETE";

@@ -25,7 +25,7 @@ const App = () => {
 
   return (
     <Router history={history}>
-      <Header currentUser={currentUser.client} logOut={logOut} />
+      <Header currentUser={currentUser&&currentUser.client} logOut={logOut} />
       <Main />
     </Router>
   );
